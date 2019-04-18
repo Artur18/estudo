@@ -1,10 +1,12 @@
 const http = require('http')
 
 const server = http.createServer((req, res) => {
-    if(req.url == '/') {
-        res.end('<h1>Home</h1>')
-    }
-    res.end('<h1>Sem resposta pra essa URl</>')
+    const resposta = []
+    resposta['/'] = '<h1>Home</h1>'
+    resposta['/contato'] = '<h1>Contato</h1>'
+    resposta['semURL'] = '<h1>URL sem reposta definida!</h1>'
+
+    res.end(resposta[res.url] || resposta['SemURL'])
 })
 
 server.listen(3001, 'localhost', () => {
